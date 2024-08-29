@@ -23,7 +23,7 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 30
-    
+
     namespace 'flutter.plugins.contactsservice.contactsservice'
 
     defaultConfig {
@@ -32,6 +32,12 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        configurations.all {
+            resolutionStrategy {
+                force 'androidx.core:core:1.6.0'
+                force 'androidx.core:core-ktx:1.6.0'
+            }
+        }
     }
     lintOptions {
         disable 'InvalidPackage'

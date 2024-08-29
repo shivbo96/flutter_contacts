@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
     _askPermissions(null);
   }
 
-  Future<void> _askPermissions(String routeName) async {
+  Future<void> _askPermissions(String? routeName) async {
     PermissionStatus permissionStatus = await _getContactPermission();
     if (permissionStatus == PermissionStatus.granted) {
       if (routeName != null) {
@@ -48,8 +48,7 @@ class _HomePageState extends State<HomePage> {
 
   Future<PermissionStatus> _getContactPermission() async {
     PermissionStatus permission = await Permission.contacts.status;
-    if (permission != PermissionStatus.granted &&
-        permission != PermissionStatus.permanentlyDenied) {
+    if (permission != PermissionStatus.granted && permission != PermissionStatus.permanentlyDenied) {
       PermissionStatus permissionStatus = await Permission.contacts.request();
       return permissionStatus;
     } else {
@@ -62,8 +61,7 @@ class _HomePageState extends State<HomePage> {
       final snackBar = SnackBar(content: Text('Access to contact data denied'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     } else if (permissionStatus == PermissionStatus.permanentlyDenied) {
-      final snackBar =
-          SnackBar(content: Text('Contact data not available on device'));
+      final snackBar = SnackBar(content: Text('Contact data not available on device'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
   }
